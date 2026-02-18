@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'add_options_screen.dart';
 import 'decision_history_screen.dart';
 import 'settings_screen.dart';
+import 'app_theme.dart';
 
 void main() {
   runApp(const DecisionLiteApp());
@@ -29,11 +30,8 @@ class _DecisionLiteAppState extends State<DecisionLiteApp> {
       debugShowCheckedModeBanner: false,
       title: 'DecisionLite',
       themeMode: _themeMode,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: MainNavigation(
         onToggleTheme: toggleTheme,
         isDarkMode: _themeMode == ThemeMode.dark,
@@ -59,12 +57,9 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
-  late final List<Widget> _screens;
-
   @override
-  void initState() {
-    super.initState();
-    _screens = [
+  Widget build(BuildContext context) {
+    final screens = [
       const HomeScreen(),
       const DecisionHistoryScreen(),
       SettingsScreen(
@@ -72,12 +67,9 @@ class _MainNavigationState extends State<MainNavigation> {
         isDarkMode: widget.isDarkMode,
       ),
     ];
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -103,6 +95,7 @@ class _MainNavigationState extends State<MainNavigation> {
     );
   }
 }
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
