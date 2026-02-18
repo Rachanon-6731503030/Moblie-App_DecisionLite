@@ -7,25 +7,50 @@ void main() {
   runApp(const DecisionLiteApp());
 }
 
-class DecisionLiteApp extends StatelessWidget {
+class DecisionLiteApp extends StatefulWidget {
   const DecisionLiteApp({super.key});
+
+  @override
+  State<DecisionLiteApp> createState() => _DecisionLiteAppState();
+}
+
+class _DecisionLiteAppState extends State<DecisionLiteApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void toggleTheme(bool isDark) {
+    setState(() {
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DecisionLite',
+      themeMode: _themeMode,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const MainNavigation(),
+      darkTheme: ThemeData.dark(useMaterial3: true),
+      home: MainNavigation(
+        onToggleTheme: toggleTheme,
+        isDarkMode: _themeMode == ThemeMode.dark,
+      ),
     );
   }
 }
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+  final Function(bool) onToggleTheme;
+  final bool isDarkMode;
+
+  const MainNavigation({
+    super.key,
+    required this.onToggleTheme,
+    required this.isDarkMode,
+  });
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
@@ -34,11 +59,20 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    DecisionHistoryScreen(),
-    SettingsScreen(),
-  ];
+  late final List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      const HomeScreen(),
+      const DecisionHistoryScreen(),
+      SettingsScreen(
+        onToggleTheme: widget.onToggleTheme,
+        isDarkMode: widget.isDarkMode,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +110,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F8FB),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
         title: const Text(
           'DecisionLite',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -99,11 +130,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
             child: const Text(
               'Start Decision',
               style: TextStyle(fontSize: 16),
