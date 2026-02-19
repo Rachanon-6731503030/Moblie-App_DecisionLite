@@ -1,15 +1,11 @@
-class DecisionItem {
-  final String result;
-  final DateTime time;
-
-  DecisionItem(this.result, this.time);
-}
-
 class DecisionHistory {
-  static final List<DecisionItem> history = [];
+  static List<Map<String, String>> history = [];
 
-  static void add(String result) {
-    history.insert(0, DecisionItem(result, DateTime.now()));
+  static void add(String question, String result) {
+    history.insert(0, {
+      "question": question,
+      "result": result,
+      "date": DateTime.now().toString().split(' ')[0],
+    });
   }
 }
-

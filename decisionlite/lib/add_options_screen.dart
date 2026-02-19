@@ -29,7 +29,7 @@ class _AddOptionsScreenState extends State<AddOptionsScreen> {
   final random = Random();
   final result = _options[random.nextInt(_options.length)];
 
-  DecisionHistory.add(result);
+  DecisionHistory.add("My Decision", result);
 
   Navigator.push(
     context,

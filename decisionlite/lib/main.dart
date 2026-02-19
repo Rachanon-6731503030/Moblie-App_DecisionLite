@@ -105,81 +105,76 @@ class HomeScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+  children: [
+
+    // ===== Hero Header =====
+    Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(20, 60, 20, 30),
+      decoration: const BoxDecoration(
+        color: Color(0xFFE3F2FD), // สีฟ้าอ่อน
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Row(
             children: [
-              const SizedBox(height: 32),
-
-              // App Header
-              Row(
-                children: [
-                  Icon(
-                    Icons.lightbulb_outline,
-                    size: 32,
-                    color: theme.colorScheme.primary,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'DecisionLite',
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 40),
-
-              // Hero Title
+              Icon(Icons.lightbulb, size: 28, color: Colors.blue),
+              SizedBox(width: 8),
               Text(
-                'Make decisions\nwithout overthinking',
-                style: theme.textTheme.headlineLarge?.copyWith(
+                "DecisionLite",
+                style: TextStyle(
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  height: 1.2,
+                  color: Colors.blue,
                 ),
               ),
-
-              const SizedBox(height: 12),
-
-              // ✨ Subtitle
-              Text(
-                'Add your options and let DecisionLite help you choose quickly and confidently.',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey,
-                ),
-              ),
-
-              const Spacer(),
-
-              // Primary CTA
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const AddOptionsScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Start Decision',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
             ],
+          ),
+          SizedBox(height: 20),
+          Text(
+            "What decision are\nyou making today?",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    ),
+
+    const SizedBox(height: 20),
+
+    // ===== ส่วนปุ่มเดิมของคุณ =====
+    Expanded(
+      child: Center(
+        child: SizedBox(
+          width: 200,
+          height: 52,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AddOptionsScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              'Start Decision',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ),
       ),
+    ),
+  ],
+),
     );
   }
 }
-
