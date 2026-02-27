@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257463681924",
+    "project_id": "decisionlite-bb366",
+    "storage_bucket": "decisionlite-bb366.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257463681924:android:d402a7fa7b8bf6a436d3d1",
+        "android_client_info": {
+          "package_name": "com.example.decisionlite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSrU24wtErNDSmVBKgcg_5KbbWS-nKhvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
