@@ -156,26 +156,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 48),
 
-              // Hero Title
-              Text(
-                'Make decisions\nwithout overthinking.',
-                style: theme.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  height: 1.2,
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Subtitle
-              Text(
-                'Add your options and let DecisionLite help you choose quickly and confidently.',
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.6),
-                  height: 1.5,
-                ),
-              ),
-
               const Spacer(),
 
               Center(

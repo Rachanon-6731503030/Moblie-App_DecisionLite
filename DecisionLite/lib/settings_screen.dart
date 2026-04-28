@@ -76,14 +76,6 @@ class SettingsScreen extends StatelessWidget {
                     );
                   },
                 ),
-                Divider(height: 1, color: theme.colorScheme.outline.withOpacity(0.1)),
-                ListTile(
-                  leading: const Icon(Icons.star_rate_rounded, color: Colors.amber),
-                  title: const Text('Rate the App', style: TextStyle(fontWeight: FontWeight.w500)),
-                  trailing: const Icon(Icons.chevron_right_rounded, color: Colors.grey),
-                  onTap: () {
-                  },
-                ),
               ],
             ),
           ),
